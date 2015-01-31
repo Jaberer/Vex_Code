@@ -45,6 +45,21 @@ void pre_auton()
 // You must modify the code to add your own robot specific commands here.
 //
 /////////////////////////////////////////////////////////////////////////////////////////
+void turn(int power,int time, int direction)//-1 for left, 1 for right
+{
+
+		motor[FrontLeftDrive] = power*direction;
+		motor[RearLeftDrive] = power*direction;
+		motor[FrontRightDrive] = power*direction*-1;
+		motor[RearRightDrive] = power*direction*-1;
+		
+		wait1Msec(time);
+		motor[FrontLeftDrive] = 0;
+		motor[RearLeftDrive] = 0;
+		motor[FrontRightDrive] = 0;
+		motor[RearRightDrive] = 0;
+		
+}
 
 task autonomous()
 {
