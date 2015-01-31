@@ -44,7 +44,21 @@ void pre_auton()
 // This task is used to control your robot during the autonomous phase of a VEX Competition.
 // You must modify the code to add your own robot specific commands here.
 //
-/////////////////////////////////////////////////////////////////////////////////////////
+void move_forward(int power,int time)
+{
+		
+		motor[FrontLeftDrive] = power;
+		motor[RearLeftDrive] = power;
+		motor[FrontRightDrive] = power;
+		motor[RearRightDrive] = power;
+		wait1Msec(time);
+		motor[FrontLeftDrive] = 0;
+		motor[RearLeftDrive] = 0;
+		motor[FrontRightDrive] = 0;
+		motor[RearRightDrive] = 0;
+		
+}
+
 void turn(int power,int time, int direction)//-1 for left, 1 for right
 {
 
@@ -61,13 +75,22 @@ void turn(int power,int time, int direction)//-1 for left, 1 for right
 		
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////
+//
+//                                 Autonomous Task
+//
+// This task is used to control your robot during the autonomous phase of a VEX Competition.
+// You must modify the code to add your own robot specific commands here.
+//
+/////////////////////////////////////////////////////////////////////////////////////////
+
 task autonomous()
 {
   // .....................................................................................
   // Insert user code here.
   // .....................................................................................
 
-	AutonomousCodePlaceholderForTesting();  // Remove this function call once you have "real" code.
+	move_forward(80,500);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
