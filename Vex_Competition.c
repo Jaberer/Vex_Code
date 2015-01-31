@@ -86,11 +86,6 @@ void liftarm(int power,int time){
 		motor[LeftArmTop] = 0;
 		motor[RightArmBottom] = 0;
 		motor[RightArmTop] = 0;
-	wait1Msec(time);
-	motor[LeftArmBottom] = -power;
-		motor[LeftArmTop] = -power;
-		motor[RightArmBottom] = -power;
-		motor[RightArmTop] = -power;
 
 
 
@@ -194,5 +189,9 @@ task usercontrol()
 	if(vexRT[Btn8D]==1)
 		{
 
-   move_forward(80,500);
+    liftarm(80,400);
+		move_forward(80,500);
+		turn(80,600, -1);
+	}
+
 }
