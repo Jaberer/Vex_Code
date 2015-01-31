@@ -46,7 +46,7 @@ void pre_auton()
 //
 void move_forward(int power,int time)
 {
-		
+
 		motor[FrontLeftDrive] = power;
 		motor[RearLeftDrive] = power;
 		motor[FrontRightDrive] = power;
@@ -56,7 +56,7 @@ void move_forward(int power,int time)
 		motor[RearLeftDrive] = 0;
 		motor[FrontRightDrive] = 0;
 		motor[RearRightDrive] = 0;
-		
+
 }
 
 void turn(int power,int time, int direction)//-1 for left, 1 for right
@@ -66,13 +66,35 @@ void turn(int power,int time, int direction)//-1 for left, 1 for right
 		motor[RearLeftDrive] = power*direction;
 		motor[FrontRightDrive] = power*direction*-1;
 		motor[RearRightDrive] = power*direction*-1;
-		
+
 		wait1Msec(time);
 		motor[FrontLeftDrive] = 0;
 		motor[RearLeftDrive] = 0;
 		motor[FrontRightDrive] = 0;
 		motor[RearRightDrive] = 0;
-		
+
+}
+
+void liftarm(int power,int time){
+	motor[LeftArmBottom] = power;
+		motor[LeftArmTop] = power;
+		motor[RightArmBottom] =power;
+		motor[RightArmTop] = power;
+	wait1Msec(time);
+
+	motor[LeftArmBottom] = 0;
+		motor[LeftArmTop] = 0;
+		motor[RightArmBottom] = 0;
+		motor[RightArmTop] = 0;
+	wait1Msec(time);
+	motor[LeftArmBottom] = -power;
+		motor[LeftArmTop] = -power;
+		motor[RightArmBottom] = -power;
+		motor[RightArmTop] = -power;
+
+
+
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -91,6 +113,7 @@ task autonomous()
   // .....................................................................................
 
 	move_forward(80,500);
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -167,5 +190,9 @@ task usercontrol()
 	motor[FrontRightDrive] = RightDrive;
 	motor[RearRightDrive] = RightDrive;
 	}
+	//testing for autonmous
+	if(vexRT[Btn8D]==1)
+		{
 
+   move_forward(80,500);
 }
