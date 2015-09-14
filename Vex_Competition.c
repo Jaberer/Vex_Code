@@ -42,13 +42,11 @@ void move_forward(int power, int time)
 
 }
 
-void turn(int power, int time, int direction) //-1 for left, 1 for right
-{
-		//not great code, but a example
-		//*compiles, but untested
-		int directionNUMB;
-		if(direction == "Left") { directionNUMB = -1; }
-		if(direction == "Right") { directionNUMB = 1; }
+void turn(int power, int time, string direction) //-1 for left, 1 for right
+ {
+        	int directionNUMB;
+        	if(direction == "Left") { directionNUMB = -1; }
+        	if(direction == "Right") { directionNUMB = 1; }
 
 		motor[FrontLeftDrive] = power*directionNUMB;
 		motor[RearLeftDrive] = power*directionNUMB;
